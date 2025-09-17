@@ -1,0 +1,100 @@
+﻿@model List<ProjectManagementFrontend.Models.DTO.ProjectIssueDTO>
+
+@{
+    ViewData["Title"] = "Project Issues";
+    var userRole = Context.Session.GetString("UserRole");
+}
+
+
+
+  
+
+    @if (userRole == "Admin" || userRole == "ProjectManager")
+    {
+        <p>
+            <div class="container mt-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="text-primary fw-bold">Issue</h2>
+                    <a asp-action="AddEdit" class="btn btn-success shadow-sm">
+                        <i class="bi bi-plus-circle me-1"></i> Add New Issue
+                    </a>
+                </div>
+        </p>
+    }
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Title</th>
+                <th>Project</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Created By</th>
+                <th>Assigned To</th>
+                <th>Raised On</th>
+                <th>Due Date</th>
+                <th>Attachment 1</th>
+                <th>Attachment 2</th>
+                @if (userRole == "Admin" || userRole == "ProjectManager")
+                {
+                    <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var issue in Model)
+                {
+                    <tr>
+                        <td>@issue.Title</td>
+                        <td>@issue.ProjectName</td>
+                        <td>@issue.StatusName</td>
+                        <td>@issue.Priority</td>
+                        <td>@issue.CreatedByName</td>
+                        <td>@(issue.AssignedToName ?? "Unassigned")</td>
+                        <td>@issue.RaisedOn.ToString("dd-MM-yyyy")</td>
+                        <td>@(issue.DueDate?.ToString("dd-MM-yyyy") ?? "N/A")</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(issue.Attachment1))
+                            {
+                                <a href="https://localhost:7236@(issue.Attachment1)" target="_blank">Download</a>
+                            }
+                            else
+                            {
+                                <span class="text-muted">No File</span>
+                            }
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(issue.Attachment2))
+                            {
+                                <a href="https://localhost:7236@(issue.Attachment2)" target="_blank">Download</a>
+                            }
+                            else
+                            {
+                                <span class="text-muted">No File</span>
+                            }
+                        </td>
+
+
+                        @if (userRole == "Admin" || userRole == "ProjectManager")
+                        {
+                            <td>
+                                <a class="btn btn-outline-warning" href="@Url.Action("AddEdit", "ProjectIssue", new { id = issue.IssueId })">Edit</a>
+                                <a class="btn btn-outline-danger" href="@Url.Action("Delete", "ProjectIssue", new { id = issue.IssueId })"
+                                   onclick="return confirm('Are you sure you want to delete this issue?');">Delete</a>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="11" class="text-center">No issues found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<div class="d-flex flex-column flex-root" id="kt_app_root">
+    <div class="d-flex flex-column flex-lg-row flex-column-fluid">
+
+        <!--begin::Body-->
+        <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10 order-2 order-lg-1">
+            <div class="d-flex flex-center flex-column flex-lg-row-fluid">
+                <div class="w-lg-500px p-10">
+
+                    <!-- Alerts -->
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i> @ViewBag.Error
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                            <i class="bi bi-check-circle-fill me-2"></i> @TempData["Success"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    <!--begin::Form-->
+                    <form asp-action="Login" asp-controller="User" method="post" class="form w-100">
+
+                        <!-- Heading -->
+                        <div class="text-center mb-11">
+                            <h1 class="text-gray-900 fw-bolder mb-3">Welcome Back</h1>
+                            <div class="text-gray-500 fw-semibold fs-6">Login to continue</div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="fv-row mb-8">
+                            <input type="email" name="Email"
+                                   class="form-control form-control-lg rounded-3 border-gray-300 shadow-sm"
+                                   placeholder="Email Address" required />
+                        </div>
+
+                        <!-- Password -->
+                        <div class="fv-row mb-8">
+                            <input type="password" name="Password"
+                                   class="form-control form-control-lg rounded-3 border-gray-300 shadow-sm"
+                                   placeholder="Password" required />
+                        </div>
+
+                     
+
+                        <!-- Submit -->
+                        <div class="d-grid mb-10">
+                            <button type="submit" class="btn btn-lg btn-primary rounded-3 shadow-sm">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>
+                                <span class="indicator-label">Login</span>
+                                <span class="indicator-progress">
+                                    Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <!-- Register Link -->
+                        <div class="text-gray-500 text-center fw-semibold fs-6">
+                            Don't have an account?
+                            <a href="@Url.Action("Register", "User")" class="link-primary fw-bold text-decoration-none">Register here</a>
+                        </div>
+                    </form>
+                    <!--end::Form-->
+
+                </div>
+            </div>
+        </div>
+        <!--end::Body-->
+        <!--begin::Aside-->
+        <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2"
+             style="background-image: url(/assets/media/misc/auth-bg.png)">
+            <div class="d-flex flex-column flex-center py-7 py-lg-15 px-5 px-md-15 w-100 text-center">
+               
+                <img class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20"
+                     src="/assets/media/misc/auth-screens.png" alt="" />
+                <h1 class="d-none d-lg-block text-white fs-2qx fw-bolder mb-7">
+                    Welcome to Project Management System
+                </h1>
+                <div class="d-none d-lg-block text-white fs-base">
+                    Manage your projects, tasks, and teams with ease.
+                </div>
+            </div>
+        </div>
+        <!--end::Aside-->
+
+    </div>
+</div>

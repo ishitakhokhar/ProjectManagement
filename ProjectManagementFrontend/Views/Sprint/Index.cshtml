@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ProjectManagementFrontend.Models.SPR_Sprint>
+
+@{
+    ViewBag.Title = "Sprint List";
+    var role = Context.Session.GetString("UserRole") ?? "User";
+}
+
+@if (role == "Admin" || role == "ProjectManager")
+{
+    <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">Sprint</h2>
+        <a asp-action="AddEdit" class="btn btn-success shadow-sm">
+            <i class="bi bi-plus-circle me-1"></i> Add New Project
+        </a>
+    </div>
+    </div>
+}
+
+<!-- My Sprints button for Users -->
+@if (role.ToLower() == "user")
+{
+    <a asp-controller="Sprint" asp-action="AssignToMe" class="btn btn-info mb-3">My Sprints</a>
+}
+
+<!-- Search Form -->
+<form method="get" asp-action="Index" class="row g-3 mb-3 align-items-center">
+    <div class="col-md-4">
+        <input type="text" name="search" value="@ViewBag.Search" class="form-control form-control-lg"
+               placeholder="Search by Sprint name" />
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-outline-primary btn-lg w-100">
+            <i class="bi bi-search"></i> Search
+        </button>
+    </div>
+</form>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Sprint Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Is Completed</th>
+            <th>Total Tasks</th>
+            @if (role == "Admin" || role == "ProjectManager")
+            {
+                <th>Actions</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var sprint in Model)
+            {
+                <tr>
+                    <td>@sprint.SprintName</td>
+                    <td>@sprint.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td>@sprint.EndDate.ToString("yyyy-MM-dd")</td>
+                    <td>@(sprint.IsCompleted ? "Yes" : "No")</td>
+                    <td>@sprint.TotalTasks</td>
+                    @if (role == "Admin" || role == "ProjectManager")
+                    {
+                        <td>
+                            <a asp-controller="Sprint" asp-action="AddEdit" asp-route-id="@sprint.SprintId" class="btn btn-outline-warning">Edit</a>
+                            <a asp-controller="Sprint" asp-action="DeleteSprint" asp-route-id="@sprint.SprintId" class="btn btn-outline-danger"
+                               onclick="return confirm('Are you sure you want to delete this sprint?');">Delete</a>
+                        </td>
+                    }
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">No sprints found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,52 @@
+﻿@model List<ProjectManagementFrontend.Models.DTO.IssueCommentDTO>
+@{
+    ViewData["Title"] = "Issue Comments";
+    var userRole = Context.Session.GetString("UserRole");
+}
+
+
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-primary fw-bold">IssueComment</h2>
+            <a asp-action="AddEdit" class="btn btn-success shadow-sm">
+                <i class="bi bi-plus-circle me-1"></i> Add New Comment
+            </a>
+        </div>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Issue</th>
+                <th>Comment</th>
+                <th>Created By</th>
+                <th>Show</th>
+                <th>Created At</th>
+                @if (userRole == "Admin" || userRole == "ProjectManager")
+                {
+                    <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var comment in Model)
+            {
+                <tr>
+                    <td>@comment.IssueTitle</td>
+                    <td>@comment.CommentText</td>
+                    <td>@comment.CreatedByName</td>
+                    <td>@(comment.IsShow ? "Yes" : "No")</td>
+                    <td>@(comment.CreatedAt.HasValue? comment.CreatedAt.Value.ToString("dd-MM-yyyy HH:mm") : "-")</td>
+                    @if (userRole == "Admin" || userRole == "ProjectManager")
+                    {
+                        <td>
+                            <a class="btn btn-outline-warning" href="@Url.Action("AddEdit", "ProjectIssueComment", new { id = comment.CommentId })">Edit</a>
+                            <a class="btn btn-outline-danger" href="@Url.Action("Delete", "ProjectIssueComment", new { id = comment.CommentId })"
+                               onclick="return confirm('Are you sure you want to delete this comment?');">Delete</a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

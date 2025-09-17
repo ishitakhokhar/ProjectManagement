@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var role = HttpContextAccessor.HttpContext?.Session.GetString("UserRole")?.ToLower() ?? "user";
+    var fullName = HttpContextAccessor.HttpContext?.Session.GetString("FullName") ?? "Guest";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - Project Management</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Dashboard/Index">PM Tool</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+
+                    @* ================= Admin Functions ================= *@
+                    @if (role == "admin")
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/User/List">Manage Users</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Role/List">Manage Roles</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Project/List">All Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Sprint/List">Sprints</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ProjectIssue/List">Issues</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/IssueComments/List">Comments</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/IssueStatus/List">Issue Status</a></li>
+                    }
+
+                    @* ================= Project Manager Functions ================= *@
+                    else if (role == "projectmanager" || role == "pm")
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/Project/List">My Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ProjectMember/List">Project Members</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ProjectIssue/List">Issues</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/IssueStatus/List">Issue Status</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Sprint/List">Sprints</a></li>
+                    }
+
+                    @* ================= User Functions ================= *@
+                    else if (role == "user")
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/ProjectIssue/MyIssues">My Tasks</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/IssueComments/MyComments">My Comments</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Sprint/MySprints">My Sprints</a></li>
+                    }
+                </ul>
+
+                <span class="navbar-text text-white me-3">
+                    Hello, @fullName (@role)
+                </span>
+                <a class="btn btn-outline-light" href="/User/Logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+</body>
+</html>

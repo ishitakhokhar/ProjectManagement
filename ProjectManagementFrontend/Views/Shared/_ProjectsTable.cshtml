@@ -1,0 +1,107 @@
+﻿@model List<ProjectManagementFrontend.Models.PRJ_ProjectModel>
+
+<table class="table table-striped table-hover align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Project Name</th>
+            <th>Client</th>
+            <th>Project Manager</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Visibility</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var project in Model)
+            {
+                <tr id="row-@project.ProjectId">
+                    <td class="fw-bold">@project.ProjectName</td>
+                    <td>@project.ClientName</td>
+                    <td>@project.ProjectManagerName</td>
+                    <td>@project.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td>@(project.EndDate?.ToString("yyyy-MM-dd") ?? "-")</td>
+                    <td>
+                        <span class="badge @(project.ProjectStatus == "Active" ? "bg-success" : "bg-warning text-dark")">
+                            @project.ProjectStatus
+                        </span>
+                    </td>
+                    <td>@project.Visibility</td>
+                    <td class="text-center">
+                        <a asp-action="AddEdit" asp-route-id="@project.ProjectId" class="btn btn-outline-warning btn-sm me-1">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <button type="button"
+                                class="btn btn-outline-danger btn-sm delete-btn"
+                                data-id="@project.ProjectId">
+                            <i class="bi bi-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="8" class="text-center text-muted">No projects found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@section Scripts {
+    <script>
+        // ========== AJAX Delete ==========
+        $(document).on("click", ".delete-btn", function () {
+            var id = $(this).data("id");
+
+            if (!confirm("Are you sure you want to delete this project?")) return;
+
+            $.ajax({
+                url: '@Url.Action("DeleteProjectAjax", "Project")',
+                type: "POST",
+                data: { id: id },
+                success: function (res) {
+                    if (res.success) {
+                        $("#row-" + id).fadeOut();
+                        alert(res.message);
+                    } else {
+                        alert("Error: " + res.message);
+                    }
+                },
+                error: function () {
+                    alert("Unexpected error occurred.");
+                }
+            });
+        });
+
+        // ========== AJAX Pagination ==========
+        $(document).on("click", ".load-page", function () {
+            var page = $(this).data("page");
+            var search = $("#searchInput").val(); // search box from main view
+
+            $.get('@Url.Action("LoadProjects", "Project")',
+                { search: search, pageNumber: page },
+                function (data) {
+                    $("#projectsTableContainer").html(data);
+                });
+        });
+
+        // ========== AJAX Search ==========
+        $(document).on("submit", "#searchForm", function (e) {
+            e.preventDefault();
+            var search = $("#searchInput").val();
+
+            $.get('@Url.Action("LoadProjects", "Project")',
+                { search: search, pageNumber: 1 },
+                function (data) {
+                    $("#projectsTableContainer").html(data);
+                });
+        });
+    </script>
+}

@@ -1,0 +1,41 @@
+﻿@model ProjectManagementFrontend.Models.MST_StatusModel
+
+@{
+    ViewBag.Title = Model.StatusId == 0 ? "Add Status" : "Edit Status";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card shadow-sm rounded">
+    <div class="card-header bg-primary text-white">
+        <h3 class="card-title mb-0">@ViewBag.Title</h3>
+    </div>
+
+    <div class="card-body">
+        @using (Html.BeginForm("AddEdit", "IssueStatus", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.StatusId)
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.StatusName, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.StatusName, new { @class = "form-control", placeholder = "Enter status name" })
+                        @Html.ValidationMessageFor(m => m.StatusName, "", new { @class = "text-danger small" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex justify-content-end">
+                <button type="submit" class="btn btn-success me-2">
+                    @(Model.StatusId == 0 ? "Create Status" : "Update Status")
+                </button>
+                <a href="@Url.Action("Index", "IssueStatus")" class="btn btn-secondary">Cancel</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

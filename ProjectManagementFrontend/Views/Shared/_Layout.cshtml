@@ -1,0 +1,413 @@
+﻿@{
+    var role = Context.Session.GetString("UserRole") ?? "";
+    var fullName = Context.Session.GetString("FullName") ?? "User";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title - Project Management</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --sidebar-bg: #2c3e50;
+            --sidebar-hover: #34495e;
+            --sidebar-active: #4361ee;
+            --sidebar-text: #ecf0f1;
+            --sidebar-width: 260px;
+            --sidebar-collapsed-width: 70px;
+            --topbar-height: 70px;
+        }
+
+        /* Topbar */
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--topbar-height);
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1050;
+            color: white;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-text {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: white;
+        }
+
+        #sidebarToggle {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+            #sidebarToggle:hover {
+                background: rgba(255, 255, 255, 0.25);
+                transform: rotate(90deg);
+            }
+
+        .user-dropdown .btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            border-radius: 20px;
+            padding: 8px 16px;
+            transition: all 0.3s;
+        }
+
+            .user-dropdown .btn:hover {
+                background: rgba(255, 255, 255, 0.25);
+            }
+
+        .dropdown-menu {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+
+        .dropdown-item {
+            padding: 10px 15px;
+            transition: all 0.2s;
+        }
+
+            .dropdown-item:hover {
+                background-color: #f8f9fa;
+            }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: var(--topbar-height);
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+            .sidebar.collapsed {
+                width: var(--sidebar-collapsed-width);
+            }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            margin-bottom: 5px;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+            gap: 15px;
+        }
+
+            .menu-link:hover {
+                background-color: var(--sidebar-hover);
+                color: white;
+                border-left-color: var(--primary);
+            }
+
+            .menu-link.active {
+                background-color: var(--sidebar-active);
+                color: white;
+                border-left-color: white;
+            }
+
+            .menu-link i {
+                font-size: 1.1rem;
+                width: 24px;
+                text-align: center;
+            }
+
+        .menu-text {
+            transition: opacity 0.3s;
+        }
+
+        .sidebar.collapsed .menu-text {
+            opacity: 0;
+            display: none;
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 15px 20px;
+        }
+
+        .menu-heading {
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #95a5a6;
+            letter-spacing: 1px;
+        }
+
+        .sidebar.collapsed .menu-heading {
+            display: none;
+        }
+
+        /* Content */
+        .content {
+            margin-top: var(--topbar-height);
+            margin-left: var(--sidebar-width);
+            padding: 25px;
+            transition: all 0.3s ease;
+            min-height: calc(100vh - var(--topbar-height));
+            background-color: #f8f9fa;
+        }
+
+        .sidebar.collapsed ~ .content {
+            margin-left: var(--sidebar-collapsed-width);
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .sidebar
+
+        {
+            transform: translateX(-100%);
+        }
+
+        .sidebar.show {
+            transform: translateX(0);
+        }
+
+        .content {
+            margin-left: 0 !important;
+        }
+
+        .sidebar.collapsed {
+            width: var(--sidebar-width);
+            transform: translateX(-100%);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 900;
+            display: none;
+        }
+
+            .overlay.show {
+                display: block;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <button class="btn" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <span class="brand-text">PM Tool</span>
+        </div>
+
+        <div class="dropdown user-dropdown">
+            <a class="btn dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user-circle me-2"></i> @fullName
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" href="@Url.Action("Profile", "User")"><i class="fas fa-user me-2"></i>My Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="@Url.Action("Logout", "User")"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li class="menu-item">
+                <a href="/Dashboard/Index" class="menu-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="menu-text">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="menu-divider"></li>
+
+            @if (role.ToLower() == "admin")
+            {
+                <li class="menu-heading">Administration</li>
+                <li class="menu-item">
+                    <a asp-controller="Project" asp-action="Index" class="menu-link">
+                        <i class="fas fa-project-diagram"></i>
+                        <span class="menu-text">Manage Projects</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a asp-controller="Sprint" asp-action="Index" class="menu-link">
+                        <i class="fas fa-running"></i>
+                        <span class="menu-text">Manage Sprints</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a asp-controller="ProjectIssue" asp-action="Index" class="menu-link">
+                        <i class="fas fa-tasks"></i>
+                        <span class="menu-text">Manage Issues</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a asp-controller="ProjectIssueComment" asp-action="Index" class="menu-link">
+                        <i class="fas fa-comments"></i>
+                        <span class="menu-text">Manage Comments</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a asp-controller="Role" asp-action="Index" class="menu-link">
+                        <i class="fas fa-user-tag"></i>
+                        <span class="menu-text">Manage Roles</span>
+                    </a>
+                </li>
+            }
+            else if (role.ToLower() == "projectmanager" || role.ToLower() == "pm")
+            {
+                <li class="menu-heading">Management</li>
+                <li class="menu-item">
+                    <a asp-controller="Project" asp-action="Index" class="menu-link">
+                        <i class="fas fa-project-diagram"></i>
+                        <span class="menu-text">Manage Projects</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a asp-controller="Sprint" asp-action="Index" class="menu-link">
+                        <i class="fas fa-running"></i>
+                        <span class="menu-text">Manage Sprints</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a asp-controller="ProjectIssue" asp-action="Index" class="menu-link">
+                        <i class="fas fa-tasks"></i>
+                        <span class="menu-text">Manage Issues</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a asp-controller="ProjectIssueComment" asp-action="Index" class="menu-link">
+                        <i class="fas fa-comments"></i>
+                        <span class="menu-text">Manage Comments</span>
+                    </a>
+                </li>
+            }
+            else if (role.ToLower() == "user")
+            {
+                <li class="menu-heading">My Work</li>
+                <li class="menu-item">
+                    <a asp-controller="ProjectIssue" asp-action="MyIssues" class="menu-link">
+                        <i class="fas fa-tasks"></i>
+                        <span class="menu-text">My Issues</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a asp-controller="ProjectIssueComment" asp-action="AssignToMe" class="menu-link">
+                        <i class="fas fa-comments"></i>
+                        <span class="menu-text">My Comments</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a asp-controller="Sprint" asp-action="AssignToMe" class="menu-link">
+                        <i class="fas fa-running"></i>
+                        <span class="menu-text">My Sprints</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <!-- Content -->
+    <div class="content" id="content">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const sidebar = $("#sidebar");
+            const overlay = $("#overlay");
+
+            // Toggle sidebar
+            $("#sidebarToggle").click(function () {
+                if ($(window).width() < 768) {
+                    sidebar.toggleClass("show");
+                    overlay.toggleClass("show");
+                } else {
+                    sidebar.toggleClass("collapsed");
+                }
+            });
+
+            // Close sidebar when clicking overlay
+            overlay.click(function () {
+                sidebar.removeClass("show");
+                overlay.removeClass("show");
+            });
+
+            // Add active class to current menu item
+            const currentPage = window.location.pathname;
+            $('.menu-link').each(function () {
+                const link = $(this).attr('href');
+                if (currentPage.includes(link)) {
+                    $(this).addClass('active');
+                }
+            });
+
+            // Responsive behavior
+            $(window).resize(function () {
+                if ($(window).width() >= 768) {
+                    overlay.removeClass("show");
+                }
+            });
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

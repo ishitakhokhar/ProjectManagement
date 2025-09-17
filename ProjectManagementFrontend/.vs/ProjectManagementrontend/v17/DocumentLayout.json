@@ -1,0 +1,190 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Adv.NET\\ProjectManagementFrontend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|d:\\adv.net\\projectmanagementfrontend\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|solutionrelative:controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|d:\\adv.net\\projectmanagementfrontend\\controllers\\projectissuecommentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|solutionrelative:controllers\\projectissuecommentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|d:\\adv.net\\projectmanagementfrontend\\views\\project\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|solutionrelative:views\\project\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|d:\\adv.net\\projectmanagementfrontend\\models\\prj_projectmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|solutionrelative:models\\prj_projectmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|d:\\adv.net\\projectmanagementfrontend\\views\\shared\\_projectstable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|solutionrelative:views\\shared\\_projectstable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|d:\\adv.net\\projectmanagementfrontend\\views\\projectissue\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|solutionrelative:views\\projectissue\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|d:\\adv.net\\projectmanagementfrontend\\views\\project\\addedit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|solutionrelative:views\\project\\addedit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|d:\\adv.net\\projectmanagementfrontend\\views\\sprint\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|solutionrelative:views\\sprint\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|d:\\adv.net\\projectmanagementfrontend\\controllers\\sprintcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|solutionrelative:controllers\\sprintcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|d:\\adv.net\\projectmanagementfrontend\\views\\role\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{24187B65-BA83-4056-AFAE-7B53F9A25DF0}|ProjectManagementFrontend.csproj|solutionrelative:views\\role\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProjectIssueCommentController.cs",
+              "DocumentMoniker": "D:\\Adv.NET\\ProjectManagementFrontend\\Controllers\\ProjectIssueCommentController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProjectIssueCommentController.cs",
+              "ToolTip": "D:\\Adv.NET\\ProjectManagementFrontend\\Controllers\\ProjectIssueCommentController.cs",
+              "RelativeToolTip": "Controllers\\ProjectIssueCommentController.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAwwHIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T15:22:25.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProjectController.cs",
+              "DocumentMoniker": "D:\\Adv.NET\\ProjectManagementFrontend\\Controllers\\ProjectController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProjectController.cs",
+              "ToolTip": "D:\\Adv.NET\\ProjectManagementFrontend\\Controllers\\ProjectController.cs",
+              "RelativeToolTip": "Controllers\\ProjectController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T13:41:06.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\Sprint\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Sprint\\Index.cshtml",
+              "ToolTip": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\Sprint\\Index.cshtml",
+              "RelativeToolTip": "Views\\Sprint\\Index.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAA8AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-16T13:31:04.875Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ProjectsTable.cshtml",
+              "DocumentMoniker": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\Shared\\_ProjectsTable.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_ProjectsTable.cshtml",
+              "ToolTip": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\Shared\\_ProjectsTable.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_ProjectsTable.cshtml",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAwwGEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-16T13:30:49.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\Project\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Project\\Index.cshtml",
+              "ToolTip": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\Project\\Index.cshtml",
+              "RelativeToolTip": "Views\\Project\\Index.cshtml",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-16T13:27:56.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PRJ_ProjectModel.cs",
+              "DocumentMoniker": "D:\\Adv.NET\\ProjectManagementFrontend\\Models\\PRJ_ProjectModel.cs",
+              "RelativeDocumentMoniker": "Models\\PRJ_ProjectModel.cs",
+              "ToolTip": "D:\\Adv.NET\\ProjectManagementFrontend\\Models\\PRJ_ProjectModel.cs",
+              "RelativeToolTip": "Models\\PRJ_ProjectModel.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T15:25:06.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AddEdit.cshtml",
+              "DocumentMoniker": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\Project\\AddEdit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Project\\AddEdit.cshtml",
+              "ToolTip": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\Project\\AddEdit.cshtml",
+              "RelativeToolTip": "Views\\Project\\AddEdit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-16T13:43:34.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\ProjectIssue\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\ProjectIssue\\Index.cshtml",
+              "ToolTip": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\ProjectIssue\\Index.cshtml",
+              "RelativeToolTip": "Views\\ProjectIssue\\Index.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-16T13:45:08.207Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SprintController.cs",
+              "DocumentMoniker": "D:\\Adv.NET\\ProjectManagementFrontend\\Controllers\\SprintController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SprintController.cs",
+              "ToolTip": "D:\\Adv.NET\\ProjectManagementFrontend\\Controllers\\SprintController.cs",
+              "RelativeToolTip": "Controllers\\SprintController.cs",
+              "ViewState": "AgIAANEAAAAAAAAAAAAqwNsAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T13:34:27.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\Role\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Role\\Index.cshtml",
+              "ToolTip": "D:\\Adv.NET\\ProjectManagementFrontend\\Views\\Role\\Index.cshtml",
+              "RelativeToolTip": "Views\\Role\\Index.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-16T13:31:28.078Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

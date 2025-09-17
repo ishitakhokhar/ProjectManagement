@@ -1,0 +1,84 @@
+﻿@model ProjectManagementFrontend.Models.PRJ_IssuesModel
+@{
+    ViewBag.Title = Model.IssueId == 0 ? "Add Issue" : "Edit Issue";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form asp-action="AddEdit" method="post" enctype="multipart/form-data">
+    @Html.HiddenFor(m => m.IssueId)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProjectId)
+        @Html.DropDownListFor(m => m.ProjectId, Model.ProjectList, "-- Select Project --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProjectId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+    </div>
+
+
+    <div class="form-group">
+        <label for="StatusId">Issue Status</label>
+        @Html.DropDownListFor(model => model.StatusId,
+        Model.StatusList,
+                "Select Status",
+                new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.StatusId)
+        @Html.DropDownListFor(m => m.StatusId, Model.StatusList, "-- Select Status --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.StatusId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CreatedBy)
+        @Html.DropDownListFor(m => m.CreatedBy, Model.UserList, "-- Select Creator --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CreatedBy, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.AssignedTo)
+        @Html.DropDownListFor(m => m.AssignedTo, Model.UserList, "-- Select Assignee --", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RaisedOn)
+        @Html.TextBoxFor(m => m.RaisedOn, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.DueDate)
+        @Html.TextBoxFor(m => m.DueDate, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Attachment 1")
+        <input type="file" asp-for="File1" class="form-control" />
+        @if (!string.IsNullOrEmpty(Model.Attachment1))
+        {
+            <p>Existing: <a href="https://localhost:7236@(Model.Attachment1)" target="_blank">Download</a></p>
+        }
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Attachment 2")
+        <input type="file" asp-for="File2" class="form-control" />
+        @if (!string.IsNullOrEmpty(Model.Attachment2))
+        {
+            <p>Existing: <a href="https://localhost:7236@(Model.Attachment2)" target="_blank">Download</a></p>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="@Url.Action("Index", "ProjectIssue")" class="btn btn-secondary">Cancel</a>
+</form>

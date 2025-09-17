@@ -1,0 +1,62 @@
+﻿@model ProjectManagementFrontend.Models.SPR_Sprint
+
+@{
+    ViewBag.Title = Model.SprintId == 0 ? "Add Sprint" : "Edit Sprint";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<form asp-controller="Sprint" asp-action="AddEdit" method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.SprintId)
+
+    <label asp-for="ProjectId" class="form-label">Select Project</label>
+    <select asp-for="ProjectId" class="form-select" asp-items="Model.ProjectList">
+        <option value="">-- Select Project --</option>
+    </select>
+    <span asp-validation-for="ProjectId" class="text-danger"></span>
+
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(m => m.SprintName)
+        @Html.TextBoxFor(m => m.SprintName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.SprintName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(m => m.StartDate)
+        @Html.TextBoxFor(m => m.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(m => m.EndDate)
+        @Html.TextBoxFor(m => m.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group form-check mb-3">
+        @Html.CheckBoxFor(m => m.IsCompleted, new { @class = "form-check-input" })
+        @Html.LabelFor(m => m.IsCompleted, "Completed?", new { @class = "form-check-label" })
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(m => m.TotalTasks)
+        @Html.TextBoxFor(m => m.TotalTasks, new { @class = "form-control", type = "number", min = "0" })
+        @Html.ValidationMessageFor(m => m.TotalTasks, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
